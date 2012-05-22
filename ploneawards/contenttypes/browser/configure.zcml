@@ -22,7 +22,7 @@
 
   <browser:page
     name="carousel-view"
-    for="Products.ATContentTypes.interfaces.interfaces.IATContentType"
+    for="Products.ATContentTypes.interfaces.document.IATDocument"
     template="templates/default_tile.pt"
     permission="zope2.View"
     layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
