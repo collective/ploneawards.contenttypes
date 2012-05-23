@@ -1,0 +1,10 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    i18n_domain="ploneawards.contenttypes">
+
+    <permission
+        id="ploneawards.contenttypes.AddNomination"
+        title="ploneawards.contenttypes: Add Nomination"
+        />
+
+</configure>

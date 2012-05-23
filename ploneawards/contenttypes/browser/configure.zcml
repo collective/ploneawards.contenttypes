@@ -35,5 +35,4 @@
     layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
     />
 
-
 </configure>
