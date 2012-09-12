@@ -25,6 +25,12 @@ setup(name='ploneawards.contenttypes',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.dexterity',
+          'plone.app.versioningbehavior',
+          'plone.app.referenceablebehavior',
+          'collective.z3cform.datetimewidget',
+          'rwproperty',
+          'collective.dexteritytextindexer',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
