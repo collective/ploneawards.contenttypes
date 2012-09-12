@@ -25,7 +25,6 @@ setup(name='ploneawards.contenttypes',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'ploneconf.contenttypes',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
