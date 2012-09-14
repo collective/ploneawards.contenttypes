@@ -37,6 +37,14 @@
 
   <browser:page
     name="view"
+    for="ploneawards.contenttypes.nominationfolder.INominationFolder"
+    class=".nominationfolder.NominationFolderView"
+    template="templates/nominationfolder.pt"
+    permission="zope2.View"
+    />
+
+  <browser:page
+    name="view"
     for="ploneawards.contenttypes.nomination.INomination"
     class=".nomination.NominationView"
     template="templates/nomination.pt"

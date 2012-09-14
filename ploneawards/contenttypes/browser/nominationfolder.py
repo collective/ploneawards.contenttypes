@@ -2,11 +2,11 @@ from Products.Five import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
-class NominationView(BrowserView):
-    """Standalone view for a nomination.
+class NominationFolderView(BrowserView):
+    """Standalone view for a nomination folder.
     """
 
-    index = ViewPageTemplateFile("templates/nomination.pt")
+    index = ViewPageTemplateFile("templates/nominationfolder.pt")
 
     def render(self):
         return self.index()
