@@ -17,7 +17,7 @@
 
   <genericsetup:registerProfile
       name="default"
-      title="ploneawards.contenttypes"
+      title="Plone Awards Contenttypes"
       directory="profiles/default"
       description="Installs the ploneawards.contenttypes package"
       provides="Products.GenericSetup.interfaces.EXTENSION"
