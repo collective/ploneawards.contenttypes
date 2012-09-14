@@ -3,14 +3,14 @@ from plone.directives import dexterity, form
 from zope import schema
 
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.namedfile.field import NamedImage, NamedFile
-from plone.namedfile.field import NamedBlobImage, NamedBlobFile
+from plone.namedfile.field import NamedImage
 
 from plone.app.textfield import RichText
 from ploneawards.contenttypes import MessageFactory as _
 
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
+
 
 # Interface class; used to define content-type schema.
 
@@ -20,39 +20,40 @@ class INomination(form.Schema, IImageScaleTraversable):
     """
 
     information = RichText(
-            title=_(u"Detailed information about the entry"),
-            required=True,
-            default=u"",
-        )
+        title=_(u"Detailed information about the entry"),
+        required=True,
+        default=u"",
+    )
     image = NamedImage(
-            title=_(u"A fullscreen image that illustrates the innovation"),
-            required=False,
-            description=_(u"Please upload an image"),
-        )
+        title=_(u"A fullscreen image that illustrates the innovation"),
+        required=False,
+        description=_(u"Please upload an image"),
+    )
     entry_credits = schema.TextLine(
-            title=_(u"Entry credits"),
-            required=True,
-            default=u"",
-            description=_(u"who created the innovation"),
-        )
+        title=_(u"Entry credits"),
+        required=True,
+        default=u"",
+        description=_(u"who created the innovation"),
+    )
     entry_submitter = schema.TextLine(
-            title=_(u"Entry submitter"),
-            required=True,
-            default=u"",
-            description=_(u"who submitted the entry"),
-        )
+        title=_(u"Entry submitter"),
+        required=True,
+        default=u"",
+        description=_(u"who submitted the entry"),
+    )
 
     link = schema.TextLine(
-            title=_(u"Link"),
-            required=True,
-            default=u"",
-            description=_(u"A hyperlink to learn more"),
-        )
+        title=_(u"Link"),
+        required=True,
+        default=u"",
+        description=_(u"A hyperlink to learn more"),
+    )
 
 # Custom content-type class; objects created for this content type will
 # be instances of this class. Use this class to add content-type specific
 # methods and properties. Put methods that are mainly useful for rendering
 # in separate view classes.
+
 
 class Nomination(dexterity.Item):
     grok.implements(INomination)
@@ -73,6 +74,6 @@ def notifyOrganization(training, event):
         return
 
     subject = "New Talk submitted"
-    message = "A nomination called '%s' was submitted here %s" % ( \
-                                    training.title, training.absolute_url(),)
+    message = "A nomination called '%s' was submitted here %s" % (
+        training.title, training.absolute_url(),)
     mail_host.send(message, to_email, from_, subject)
