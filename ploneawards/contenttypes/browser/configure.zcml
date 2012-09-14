@@ -35,4 +35,12 @@
     layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
     />
 
+  <browser:page
+    name="view"
+    for="ploneawards.contenttypes.nomination.INomination"
+    class=".nomination.NominationView"
+    template="templates/nomination.pt"
+    permission="zope2.View"
+    />
+
 </configure>
