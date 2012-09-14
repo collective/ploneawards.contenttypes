@@ -21,14 +21,7 @@
   <include package="collective.carousel" />
 
   <browser:page
-    name="carousel-view"
-    for="Products.ATContentTypes.interfaces.document.IATDocument"
-    template="templates/default_tile.pt"
-    permission="zope2.View"
-    layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
-    />
-  <browser:page
-    name="carousel-view"
+    name="carousel-portlet-view"
     for="plone.dexterity.interfaces.IDexterityContent"
     template="templates/default_tile.pt"
     permission="zope2.View"
