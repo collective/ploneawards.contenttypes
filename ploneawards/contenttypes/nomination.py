@@ -41,16 +41,12 @@ class INomination(form.Schema, IImageScaleTraversable):
             default=u"",
             description=_(u"who submitted the entry"),
         )
-    video = schema.TextLine(
-            title=_(u"Video link"),
+
+    link = schema.TextLine(
+            title=_(u"Link"),
             required=True,
             default=u"",
-        )
-    video = schema.TextLine(
-            title=_(u"Links"),
-            required=True,
-            default=u"",
-            description=_(u"aditional links"),
+            description=_(u"A hyperlink to learn more"),
         )
 
 # Custom content-type class; objects created for this content type will
@@ -70,7 +66,7 @@ def notifyOrganization(training, event):
     portal_url = getToolByName(training, 'portal_url')
     portal = portal_url.getPortalObject()
     sender = portal.getProperty('email_from_address')
-    to_email = 'ploneconf@fourdigits.nl'
+    to_email = 'guido.stevens@cosent.nl'
     from_ = '%s <%s>' % (portal.email_from_address, portal.email_from_name)
 
     if not sender:
