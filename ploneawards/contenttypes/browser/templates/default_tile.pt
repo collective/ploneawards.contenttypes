@@ -5,12 +5,22 @@
                   item_title_or_id context/pretty_title_or_id;
                 ">
 
-    <div class="awardimage">
-        <tal:block tal:condition="exists: context/item/image">
-            img
+    <div class="awardimage" tal:condition="exists: context/image">
+        <tal:block tal:condition="context/image">
+          <a tal:attributes="href context/absolute_url">
+            <!-- scale within box, then stretch to match box -->
+            <img tal:define="scales context/@@images;
+                             thumbnail python: scales.scale('image', width=306, height=227);"
+                 tal:condition="thumbnail"
+                 tal:attributes="src thumbnail/url;
+                                 width string:306;
+                                 height string:227" />
+          </a>
         </tal:block>
-        <tal:block tal:condition="not: exists: context/item/image">
+        <tal:block tal:condition="not: context/image">
+          <a tal:attributes="href context/absolute_url">
             <img src="++theme++ploneawards.theme/images/emptycarouselimg.png" />
+          </a>
         </tal:block>
 
     </div>
