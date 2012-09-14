@@ -13,5 +13,3 @@ class NominationView(BrowserView):
 
     def __call__(self):
         return self.render()
-
-

@@ -33,7 +33,7 @@
             </span>
         </div>
         <div class="votes">
-            <span class="numbervotes">28</span> <br />
+            <span class="numbervotes" tal:content="context/votes">28</span> <br />
             votes
         </div>
         <div class="votebutton">

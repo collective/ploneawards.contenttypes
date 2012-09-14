@@ -31,6 +31,7 @@ setup(name='ploneawards.contenttypes',
           'collective.z3cform.datetimewidget',
           'rwproperty',
           'collective.dexteritytextindexer',
+          'beautifulsoup4',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
