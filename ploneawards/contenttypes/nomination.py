@@ -71,6 +71,10 @@ class Nomination(dexterity.Item):
 
     @property
     def votes(self):
+        if self.absolute_url() == '':
+            #import pdb; pdb.set_trace()
+            return -1
+
         # delegate to avoid caching exceptions
         try:
             return self._votes()

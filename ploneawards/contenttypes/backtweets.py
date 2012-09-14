@@ -1,15 +1,24 @@
 import urllib
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 
 
 def backtweets(url):
     """Crawl the backtweets site and return number of tweets on <url>
     """
+    if url == '':
+        logger.error('empty url, aborting backtweets crawl')
+        return 0
+
     backurl = 'http://backtweets.com/search/?q=%s' % urllib.quote(url)
     u = urlopen(backurl)
     html = u.read()
     u.close()
+
     soup = BeautifulSoup(html)
     # this will break if backtweet html changes...
     try:
