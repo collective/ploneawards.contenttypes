@@ -21,14 +21,6 @@
   <include package="collective.carousel" />
 
   <browser:page
-    name="carousel-portlet-view"
-    for="plone.dexterity.interfaces.IDexterityContent"
-    template="templates/default_tile.pt"
-    permission="zope2.View"
-    layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
-    />
-
-  <browser:page
     name="view"
     for="ploneawards.contenttypes.nominationfolder.INominationFolder"
     class=".nominationfolder.NominationFolderView"
@@ -39,9 +31,19 @@
   <browser:page
     name="view"
     for="ploneawards.contenttypes.nomination.INomination"
-    class=".nomination.NominationView"
+    class=".nomination_view.NominationView"
     template="templates/nomination.pt"
     permission="zope2.View"
     />
+
+  <browser:page
+    name="carousel-portlet-view"
+    for="ploneawards.contenttypes.nomination.INomination"
+    class=".nomination_view.NominationView"
+    template="templates/nomination_tile.pt"
+    permission="zope2.View"
+    layer="collective.carousel.interfaces.ICollectiveCarouselLayer"
+    />
+
 
 </configure>

@@ -8,9 +8,9 @@
     <div class="awardimage" tal:condition="exists: context/image">
         <tal:block tal:condition="context/image">
           <a tal:attributes="href context/absolute_url">
-            <!-- scale within box, then stretch to match box -->
+            <!-- scale to 2x box, then compress to match box -->
             <img tal:define="scales context/@@images;
-                             thumbnail python: scales.scale('image', width=306, height=227);"
+                             thumbnail python: scales.scale('image', width=612, height=454);"
                  tal:condition="thumbnail"
                  tal:attributes="src thumbnail/url;
                                  width string:306;
@@ -43,7 +43,7 @@
             </span>
         </div>
         <div class="votes">
-            <span class="numbervotes" tal:content="context/votes">28</span> <br />
+            <span class="numbervotes" tal:content="view/votes">28</span> <br />
             votes
         </div>
         <div class="votebutton">

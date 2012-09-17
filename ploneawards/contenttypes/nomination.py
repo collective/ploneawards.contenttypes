@@ -1,4 +1,3 @@
-import time
 import logging
 
 from five import grok
@@ -13,9 +12,6 @@ from ploneawards.contenttypes import MessageFactory as _
 
 from zope.app.container.interfaces import IObjectAddedEvent
 from Products.CMFCore.utils import getToolByName
-
-from backtweets import backtweets
-from plone.memoize import ram
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -69,25 +65,8 @@ class Nomination(dexterity.Item):
 
     # Add your class methods and properties here
 
-    @property
     def votes(self):
-        if self.absolute_url() == '':
-            #import pdb; pdb.set_trace()
-            return -1
-
-        # delegate to avoid caching exceptions
-        try:
-            return self._votes()
-        # catch exceptions outside of the cache
-        except Exception:
-            logger.exception("Cannot get votes from backtweet")
-            return -1
-
-    # cache tweet count for one hour
-    @ram.cache(lambda *args: time.time() // (60 * 60))
-    def _votes(self):
-        # if this raises, it won't cache
-        return backtweets(self.absolute_url())
+        return -2
 
 
 @grok.subscribe(INomination, IObjectAddedEvent)

@@ -1,6 +1,8 @@
 import urllib
 from urllib2 import urlopen
 from bs4 import BeautifulSoup
+import time
+from plone.memoize import ram
 import logging
 
 logger = logging.getLogger(__name__)
@@ -12,8 +14,22 @@ def backtweets(url):
     """
     if url == '':
         logger.error('empty url, aborting backtweets crawl')
-        return 0
+        return -1
+    # delegate to avoid caching exceptions
+    try:
+        return _backtweets(url)
+    # catch exceptions outside of the cache
+    except Exception:
+        logger.exception("Cannot get votes from backtweet for: %s", url)
+        return -1
 
+
+# cache tweet count for one hour, for each url separately
+@ram.cache(lambda *args: (args, time.time() // (60 * 60)))
+def _backtweets(url):
+    """A cacheable vote counter that avoids caching errors
+    by not catching many exceptions."""
+    # any exceptions thrown here should be caught outside the cache
     backurl = 'http://backtweets.com/search/?q=%s' % urllib.quote(url)
     u = urlopen(backurl)
     html = u.read()

@@ -11,7 +11,10 @@
   <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
       
-      Yay! We got <span tal:content="context/votes">5</span> votes!
+      <p>Yay! We got <span tal:content="view/votes">5</span> votes!</p>
+
+      <p>URL: <span tal:content="context/absolute_url" /></p>
+
       
     </metal:content-core>
   </metal:content-core>
