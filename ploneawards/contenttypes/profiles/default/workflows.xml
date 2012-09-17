@@ -4,7 +4,7 @@
     <object name="ploneawards_nominationfolder_workflow" meta_type="Workflow"/>
     <bindings>
        <type type_id="ploneawards.contenttypes.nomination">
-           <bound-workflow workflow_id="ploneawards_nominationworkflow"/>
+           <bound-workflow workflow_id="ploneawards_nomination_workflow"/>
        </type>
        <type type_id="ploneawards.contenttypes.nominationfolder">
            <bound-workflow workflow_id="ploneawards_nominationfolder_workflow"/>
