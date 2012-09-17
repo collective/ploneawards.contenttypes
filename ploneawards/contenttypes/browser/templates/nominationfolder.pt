@@ -10,8 +10,57 @@
 
   <metal:content-core fill-slot="content-core">
     <metal:content-core define-macro="content-core">
+
+<div id="nomination_listing">
       
-      Yay
+      <tal:nominations repeat="nomination context/objectValues">
+
+        <div class="nomination"
+             tal:define="even repeat/nomination/even"
+             tal:attributes="class python:even and 'nomination even' or 'nomination odd'">
+
+
+            <h2 class="nomination_header">
+              <a href="#"
+                 class="summary url"
+                 tal:attributes="href nomination/absolute_url;"
+                 tal:content="nomination/Title">
+                Item Title
+              </a>
+            </h2>
+
+          <div class="nomination_image" tal:condition="exists: nomination/image">
+            <tal:block tal:condition="nomination/image">
+              <a tal:attributes="href nomination/absolute_url">
+                <!-- scale to 2x box, then compress to match box -->
+                <img tal:define="scales nomination/@@images;
+                                 thumbnail python: scales.scale('image', width=400, height=300);"
+                     tal:condition="thumbnail"
+                     tal:attributes="src thumbnail/url;
+                                     width string:200;
+                                     height string:150" />
+              </a>
+            </tal:block>
+            <tal:block tal:condition="not: nomination/image">
+              <a tal:attributes="href nomination/absolute_url">
+                <img src="++theme++ploneawards.theme/images/emptycarouselimg.png" />
+              </a>
+            </tal:block>
+          </div>
+
+          <div class="nomination_info">
+            <div class="tileBody">
+              <span class="description" tal:content="nomination/Description">
+                description
+              </span>
+            </div>
+          </div>
+
+        </div><!-- /nomination_listing -->
+
+      </tal:nominations>
+
+</div>
       
     </metal:content-core>
   </metal:content-core>
