@@ -15,11 +15,30 @@
            tal:content="structure context/@@carousel-portlet-view">
       </div>
 
+      <div id="tweetme">
+        <a href="https://twitter.com/share"
+           class="twitter-share-button" data-lang="en"
+           data-hashtags="ploneawards"
+           data-related="ploneawards"
+           data-count="vertical"
+           data-dnt="true"
+           tal:attributes="data-url context/absolute_url;
+                           data-text view/tweettext">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+      </div>
+
       <h1 id="thankyou">
         <span class="name"
               tal:content="context/entry_credits">the nominee</span>
         did a great job!
       </h1>
+
+      <p class="votetoo">
+      You can support this Plone Award nomination by 
+      <a tal:attributes="href view/tweeturl">tweeting about this page</a>.
+      </p>
+
+      <div class="visualClear" />
 
       <div tal:content="structure context/information/output" />
 

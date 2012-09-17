@@ -30,8 +30,7 @@ def _backtweets(url):
     """A cacheable vote counter that avoids caching errors
     by not catching many exceptions."""
     # any exceptions thrown here should be caught outside the cache
-    backurl = 'http://backtweets.com/search/?q=%s' % urllib.quote(url)
-    u = urlopen(backurl)
+    u = urlopen(backurl(url))
     html = u.read()
     u.close()
 
@@ -45,6 +44,10 @@ def _backtweets(url):
         # this is valid and indicates: no tweets
         # return a cacheable result count
         return 0
+
+
+def backurl(url):
+    return 'http://backtweets.com/search/?q=%s' % urllib.quote(url)
 
 
 if __name__ == '__main__':

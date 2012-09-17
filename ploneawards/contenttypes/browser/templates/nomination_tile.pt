@@ -43,11 +43,13 @@
             </span>
         </div>
         <div class="votes">
+          <a tal:attributes="href view/backurl">
             <span class="numbervotes" tal:content="view/votes">28</span> <br />
             votes
+          </a>
         </div>
         <div class="votebutton">
-            <a href="" tal:attributes="href python:(item_type in use_view_action) and item_url+'/view' or item_url;"><img src="++theme++ploneawards.theme/images/votebutton.png" /></a>
+            <a href="" tal:attributes="href view/tweeturl"><img src="++theme++ploneawards.theme/images/votebutton.png" /></a>
         </div>
     </div>
 </tal:block>
