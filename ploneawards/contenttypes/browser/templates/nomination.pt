@@ -34,13 +34,30 @@
       </h1>
 
       <p class="votetoo">
-      You can support this Plone Award nomination by 
+      Cast your vote for
+      <em tal:content="context/Title">this Plone Award nomination</em>
+      by 
       <a tal:attributes="href view/tweeturl">tweeting about this page</a>.
       </p>
 
       <div class="visualClear" />
 
+      <h2 tal:content="context/Title">the title</h2>
+      <p tal:content="context/Description"
+         class="documentDescription">the description</p>
+
       <div tal:content="structure context/information/output" />
+
+      <p class="center">
+      <a tal:attributes="href view/tweeturl" class="vote">
+        <img src="++theme++ploneawards.theme/images/votebutton_small.png" />
+      </a>
+      <br />
+      <em class="votemore">
+        You can cast as many votes as you care to tweet!
+      </em>
+      </p>
+
 
       <p>More info: 
       <a tal:attributes="href context/link"

@@ -1,7 +1,7 @@
-import urllib
 from Products.Five import BrowserView
 
 from ploneawards.contenttypes.backtweets import backtweets, backurl
+from tweet import tweettext, tweeturl
 
 
 class NominationView(BrowserView):
@@ -16,18 +16,11 @@ class NominationView(BrowserView):
 
     @property
     def tweettext(self):
-        return self.context.entry_credits \
-            + " deserves a Plone Award for " \
-            + '"' + self.context.Title() + '"!'
+        return tweettext(self.context)
 
     @property
     def tweeturl(self):
-        fields = dict(hashtags='ploneawards',
-                      url=self.context.absolute_url(),
-                      related='ploneawards',
-                      text=self.tweettext,
-                      )
-        return "https://twitter.com/intent/tweet?" + urllib.urlencode(fields)
+        return tweeturl(self.context)
 
     @property
     def backurl(self):

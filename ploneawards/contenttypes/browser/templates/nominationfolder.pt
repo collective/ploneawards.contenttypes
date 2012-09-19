@@ -12,53 +12,72 @@
     <metal:content-core define-macro="content-core">
 
 <div id="nomination_listing">
-      
-      <tal:nominations repeat="nomination context/objectValues">
 
-        <div class="nomination"
-             tal:define="even repeat/nomination/even"
-             tal:attributes="class python:even and 'nomination even' or 'nomination odd'">
+        <div class="row" 
+             tal:repeat="row view/rows"
+             >
 
+          <tal:cell repeat="nomination row">
 
-            <h2 class="nomination_header">
-              <a href="#"
-                 class="summary url"
-                 tal:attributes="href nomination/absolute_url;"
-                 tal:content="nomination/Title">
-                Item Title
-              </a>
-            </h2>
+          <div class="cell width-8 position-0"
+               tal:define="first repeat/nomination/start;
+                           position python: first and '0' or '8'"
+               tal:attributes="class string: cell width-8 position-${position}"
+               >
 
-          <div class="nomination_image" tal:condition="exists: nomination/image">
-            <tal:block tal:condition="nomination/image">
-              <a tal:attributes="href nomination/absolute_url">
-                <!-- scale to 2x box, then compress to match box -->
-                <img tal:define="scales nomination/@@images;
-                                 thumbnail python: scales.scale('image', width=400, height=300);"
-                     tal:condition="thumbnail"
-                     tal:attributes="src thumbnail/url;
-                                     width string:200;
-                                     height string:150" />
-              </a>
-            </tal:block>
-            <tal:block tal:condition="not: nomination/image">
-              <a tal:attributes="href nomination/absolute_url">
-                <img src="++theme++ploneawards.theme/images/emptycarouselimg.png" />
-              </a>
-            </tal:block>
-          </div>
+            <div class="nomination">
 
-          <div class="nomination_info">
-            <div class="tileBody">
-              <span class="description" tal:content="nomination/Description">
-                description
-              </span>
-            </div>
-          </div>
+              <div class="nomination_header">
+                <h3>
+                  <a href="#"
+                     class="summary url"
+                     tal:attributes="href nomination/absolute_url;"
+                     tal:content="nomination/Title">
+                    Item Title
+                  </a>
+                </h3>
+              </div>
+              
+              <div class="nomination_image" tal:condition="exists: nomination/image">
+                <tal:block tal:condition="nomination/image">
+                  <a tal:attributes="href nomination/absolute_url">
+                    <!-- scale to 2x box, then compress to match box -->
+                    <img tal:define="scales nomination/@@images;
+                                     thumbnail python: scales.scale('image', width=320, height=140);"
+                         tal:condition="thumbnail"
+                         tal:attributes="src thumbnail/url;
+                                         width string:160;
+                                         height string:120" />
+                  </a>
+                </tal:block>
+                <tal:block tal:condition="not: nomination/image">
+                  <a tal:attributes="href nomination/absolute_url">
+                    <img src="++theme++ploneawards.theme/images/emptycarouselimg.png" />
+                  </a>
+                </tal:block>
 
-        </div><!-- /nomination_listing -->
+                <a tal:attributes="href python:view.tweeturl(nomination)"
+                   class="vote">
+                    <img src="++theme++ploneawards.theme/images/votebutton_small.png" />
+                </a>
 
-      </tal:nominations>
+              </div><!-- /nomination-image -->
+
+              <div class="nomination_info">
+                <div class="tileBody">
+                  <span class="description" tal:content="nomination/Description">
+                    description
+                  </span>
+                  <a tal:attributes="href nomination/absolute_url">Read more...</a>
+                </div>
+              </div>
+              
+            </div><!-- /nomination -->
+
+          </div><!-- /cell -->
+          </tal:cell>
+        </div><!-- /row -->
+
 
 </div>
       
