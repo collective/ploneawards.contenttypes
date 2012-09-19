@@ -52,7 +52,8 @@
                 </tal:block>
                 <tal:block tal:condition="not: nomination/image">
                   <a tal:attributes="href nomination/absolute_url">
-                    <img src="++theme++ploneawards.theme/images/emptycarouselimg.png" />
+                    <img src="++theme++ploneawards.theme/images/emptynominationimg.png" 
+			 width="160" height="120"/>
                   </a>
                 </tal:block>
 
