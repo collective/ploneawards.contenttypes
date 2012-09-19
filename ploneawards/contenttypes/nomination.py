@@ -24,27 +24,33 @@ class INomination(form.Schema, IImageScaleTraversable):
     Nomination Type
     """
 
-    information = RichText(
-        title=_(u"Detailed information about the entry"),
+    entry_credits = schema.TextLine(
+        title=_(u"Nominee"),
         required=True,
         default=u"",
+        description=_(u"The name of the person who deserves this award"),
     )
+
+    information = RichText(
+        title=_(u"Detailed information about the nomination"),
+        required=True,
+        default=u"",
+        description=_(u"Tell us why this is special and deserves attention")
+    )
+
     image = NamedImage(
         title=_(u"A fullscreen image that illustrates the innovation"),
         required=False,
-        description=_(u"Please upload an image"),
-    )
-    entry_credits = schema.TextLine(
-        title=_(u"Entry credits"),
-        required=True,
-        default=u"",
-        description=_(u"who created the innovation"),
+        description=_(u"Please upload a 1024x768 image in 4x3 aspect ratio. "
+                      u"We're going to present this at the conference, "
+                      u"so make it big and splashy. And remember: "
+                      u"you can turn *anything* into a screenshot..."),
     )
     entry_submitter = schema.TextLine(
-        title=_(u"Entry submitter"),
+        title=_(u"Proposer"),
         required=True,
         default=u"",
-        description=_(u"who submitted the entry"),
+        description=_(u"Your name"),
     )
 
     link = schema.TextLine(
