@@ -40,7 +40,7 @@ class INomination(form.Schema, IImageScaleTraversable):
 
     image = NamedImage(
         title=_(u"A fullscreen image that illustrates the innovation"),
-        required=False,
+        required=True,
         description=_(u"Please upload a 1024x768 image in 4x3 aspect ratio. "
                       u"We're going to present this at the conference, "
                       u"so make it big and splashy. And remember: "
@@ -55,9 +55,9 @@ class INomination(form.Schema, IImageScaleTraversable):
 
     link = schema.TextLine(
         title=_(u"Link"),
-        required=True,
+        required=False,
         default=u"",
-        description=_(u"A hyperlink to learn more"),
+        description=_(u"A hyperlink to learn more about the nomination"),
     )
 
 # Custom content-type class; objects created for this content type will
@@ -71,23 +71,31 @@ class Nomination(dexterity.Item):
 
     # Add your class methods and properties here
 
-    def votes(self):
-        return -2
-
 
 @grok.subscribe(INomination, IObjectAddedEvent)
-def notifyOrganization(training, event):
-    mail_host = getToolByName(training, 'MailHost')
-    portal_url = getToolByName(training, 'portal_url')
+def notifyOrganization(nomination, event):
+    mail_host = getToolByName(nomination, 'MailHost')
+    portal_url = getToolByName(nomination, 'portal_url')
     portal = portal_url.getPortalObject()
-    sender = portal.getProperty('email_from_address')
-    to_email = 'guido.stevens@cosent.nl'
-    from_ = '%s <%s>' % (portal.email_from_address, portal.email_from_name)
-
-    if not sender:
+    if not portal.email_from_address:
         return
 
-    subject = "New Talk submitted"
-    message = "A nomination called '%s' was submitted here %s" % (
-        training.title, training.absolute_url(),)
+    from_ = '%s <%s>' % (portal.email_from_address,
+                         portal.email_from_name)
+    to_email = 'guido.stevens@cosent.nl'
+    subject = "[ploneawards] %s" % nomination.title
+    message = message_template % (nomination.entry_submitter,
+                                  nomination.title,
+                                  nomination.description,
+                                  nomination.absolute_url())
     mail_host.send(message, to_email, from_, subject)
+
+
+message_template = """A nomination was submitted by %s
+
+%s
+
+%s
+
+%s
+"""

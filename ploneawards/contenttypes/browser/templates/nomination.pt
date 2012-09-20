@@ -59,7 +59,7 @@
       </p>
 
 
-      <p>More info: 
+      <p tal:condition="context/link">More info: 
       <a tal:attributes="href context/link"
          tal:content="context/link">the link</a>
       </p>
