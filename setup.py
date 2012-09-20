@@ -32,6 +32,9 @@ setup(name='ploneawards.contenttypes',
           'rwproperty',
           'collective.dexteritytextindexer',
           'beautifulsoup4',
+          'plone.namedfile[blobs]',
+          'plone.formwidget.namedfile',
+
           # -*- Extra requirements: -*-
       ],
       entry_points="""

@@ -5,7 +5,7 @@ from plone.directives import dexterity, form
 from zope import schema
 
 from plone.namedfile.interfaces import IImageScaleTraversable
-from plone.namedfile.field import NamedImage
+from plone.namedfile.field import NamedBlobImage
 
 from plone.app.textfield import RichText
 from ploneawards.contenttypes import MessageFactory as _
@@ -38,7 +38,7 @@ class INomination(form.Schema, IImageScaleTraversable):
         description=_(u"Tell us why this is special and deserves attention")
     )
 
-    image = NamedImage(
+    image = NamedBlobImage(
         title=_(u"A fullscreen image that illustrates the innovation"),
         required=True,
         description=_(u"Please upload a 1024x768 image in 4x3 aspect ratio. "
