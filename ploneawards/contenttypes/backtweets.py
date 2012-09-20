@@ -24,8 +24,8 @@ def backtweets(url):
         return -1
 
 
-# cache tweet count for one hour, for each url separately
-@ram.cache(lambda *args: (args, time.time() // (60 * 60)))
+# cache tweet count for five minutes
+@ram.cache(lambda *args: (args, time.time() // (60 * 5)))
 def _backtweets(url):
     """A cacheable vote counter that avoids caching errors
     by not catching many exceptions."""
