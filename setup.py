@@ -36,9 +36,10 @@ setup(name='ploneawards.contenttypes',
       zip_safe=False,
       install_requires=[
           'beautifulsoup4',
+          'collective.carousel',  # TODO: move this out of here
           'collective.dexteritytextindexer',
           'collective.z3cform.datetimewidget',
-          'plone.app.dexterity',
+          'plone.app.dexterity[grok,relations]',
           'plone.app.referenceablebehavior',
           'plone.app.versioningbehavior',
           'plone.directives.dexterity',
