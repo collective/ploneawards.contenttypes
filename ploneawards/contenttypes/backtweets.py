@@ -29,7 +29,7 @@ def backtweets(url):
 def _backtweets(url):
     """A cacheable vote counter that avoids caching errors
     by not catching many exceptions."""
-    logger.debug("Refreshing vote count for: %s" % url)    
+    logger.debug("Refreshing vote count for: %s" % url)
     # any exceptions thrown here should be caught outside the cache
     u = urlopen(backurl(url))
     html = u.read()
