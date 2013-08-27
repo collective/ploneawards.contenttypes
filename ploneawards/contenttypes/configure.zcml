@@ -8,6 +8,8 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="ploneawards.contenttypes">
 
+  <include package="plone.app.dexterity" />
+
   <!-- Grok the package to initialise schema interfaces and content classes -->
   <include package="five.grok" />
   <grok:grok package="." />
