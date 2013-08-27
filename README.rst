@@ -43,3 +43,5 @@ Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 
 Check the box next to ``ploneawards.contenttypes`` and click the 'Activate'
 button.
+
+.. _`opening a support ticket`: https://github.com/collective/ploneawards.contenttypes/issues
